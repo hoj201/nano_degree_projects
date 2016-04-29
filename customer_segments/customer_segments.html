@@ -7567,7 +7567,9 @@ hpGIiIiIiAS9/wcfha9kCUNXYAAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer:</strong></p>
+<p><strong>Answer:</strong>  The K-Means clustering algorithm is scalable (i.e. parallelizable and can handle larger data sets), and is ideally suited for detecting small numbers of clusters.  In fact, the K-means clustering algorithm can be seen as a special case of a Guassian mixture model, where the covariance matrices for each cluster are restricted to be indentity matrices.</p>
+<p>In constrast, the Gaussian mixture model allows for arbitrary covariance matrices.  This is particularly advantageous when one cluster is very stretched along some axis compared to another cluster.  A disadvantage of this algorithm is that it is not scalable.</p>
+<p>As mentioned earlier, the first principal component teases out the correllation between the freatures <code>Grocery</code> <code>Milk</code> and <code>Detergents_Paper</code>, and sort of collapses these into one combined feature.  When we look at the scatter plots above, most of the plots appear to be point clouds without skew, except for the boxes between the three features represented by the first principal component.  This suggests that the data will be roughly equal variance in all directions after projection onto the first few principal components.  We appear to be in a situation where a general Gaussian Mixture Model provides little advantage over a K-means clustering algorithm.  Therefore I would choose to do a standard K-means clustering algorithm.  Moreover, as K-means is scalable, we have the flexibility of handling larger datasets in the future.</p>
 
 </div>
 </div>
