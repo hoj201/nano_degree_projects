@@ -208,7 +208,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># Import libraries necessary for this project</span>
@@ -261,7 +261,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># Display a description of the dataset</span>
@@ -388,7 +388,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># TODO: Select three indices of your choice you wish to sample from the dataset</span>
@@ -488,7 +488,9 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer:</strong>  The first customer (indexed by 0 above) purchases more fresh produce than any other customer in the entire dataset. Perhaps this customer is a grocer whose store primarly sells fruits and veggies.  The second customer purchases more milk than anyboyd else.  He or she also purchases a lot of cleaning products.  Perhaps the second customer owns a large creamery, and purchases massive amounts of ice cream and napkins for cleaning up after children who've spilled.  The last customer purchases a lot of Deli products.  They purchase a lot of every category except cleaning products.  I know that many desserts at restaurants are delivered frozen.  Perhaps the third customer is a steak-house who purchases there cleaning products elsewhere.</p>
+<p><strong>Answer:</strong>  The first customer (indexed by 0 above) purchases more fresh produce than any other customer in the entire dataset. Perhaps this customer is a grocer whose store primarly sells fruits and veggies.  In fact, this customer is well above the 75th percentile for every category.  He or she purchases more Deli and Frozen products than the second customer and more cleaning projects than the third customer.</p>
+<p>The second customer purchases more milk than anybody else.  He or she also purchases a lot of cleaning products.  More than the other two customers and well above the 75th percentile for the dataset. However, he appears to purchase very few frozen and deli products. Orders of magnitude fewer than the other two customers.  However, he or she is not an outlier with respect to those categories (i.e. between the 25th and 75th percentiles).  Perhaps the second customer owns a large creamery that makes their own ice-cream, and purchases massive amounts of ice cream and napkins for cleaning up after children who've spilled.</p>
+<p>The third customer purchases a lot of Deli products.  They purchase a lot of every category except cleaning products (just above the 25th percentile for the dataset). I know that many desserts at restaurants are delivered frozen.  Perhaps the third customer is a steak-house who purchases there cleaning products elsewhere.</p>
 
 </div>
 </div>
@@ -515,7 +517,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># TODO: Make a copy of the DataFrame, using the &#39;drop&#39; function to drop the given feature</span>
@@ -527,7 +529,7 @@ div#notebook {
 
 <span class="c"># TODO: Create a decision tree regressor and fit it to the training set</span>
 <span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
-<span class="n">regressor</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">()</span>
+<span class="n">regressor</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">regressor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
 
 <span class="c"># TODO: Report the score of the prediction using the testing set</span>
@@ -546,7 +548,7 @@ div#notebook {
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>r2 = -0.481799
+<pre>r2 = -0.385750
 </pre>
 </div>
 </div>
@@ -571,7 +573,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer:</strong>  I attempted to predict the feature <code>Fresh</code>.  The reported prediction score was $r^2 = -0.25$.  This suggests that the feature could be relevant for identifying a specific customer.</p>
+<p><strong>Answer:</strong>  I attempted to predict the feature <code>Fresh</code>.  The reported prediction score was $r^2 = -0.386$.  This suggests that the feature could be relevant for identifying a specific customer.</p>
 
 </div>
 </div>
@@ -2369,6 +2371,7 @@ o+AAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong>  There appear (literally) to be some linear relationships in the data.  The most obvious one to my eye are all the pairwise relationship between <code>Grocery</code>, <code>Detergents_Paper</code>, and <code>Milk</code>.  In contrast, the features <code>Delicatessen</code> and <code>Fresh</code> appear to be uncorrellated with the all the other features.   This suggests that <code>Delicatessen</code> and <code>Fresh</code> contain information that is independent of the information explained by the other features.  Additioanlly, this corroborates my hypothesis that <code>Fresh</code> is a relevant feature what we should keep handy.  However, we might get away with only keeping one of <code>Delicatessen</code>,<code>Detergents_Paper</code>, or <code>Milk</code> because these features appear to be linear related to each other, and don't provide independent information.</p>
+<p>The data is not normally distributed at all.  All values are restricted to positive numbers.  From glancing at the plots on the diagnal of the above figure, much of the data appears reminiscient of a Poisson distribution.</p>
 
 </div>
 </div>
@@ -6905,7 +6908,7 @@ Once you have performed this implementation, the dataset will be stored in the v
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer:</strong>  66 was an outlier for both <code>Fresh</code> and <code>Delicatessen</code>.  Considering we are going to implement PCA next, perhaps it is a good idea to remove these outliers.</p>
+<p><strong>Answer:</strong>  66 was an outlier for both <code>Fresh</code> and <code>Delicatessen</code>.  Considering we are going to implement PCA next, perhaps it is a good idea to remove these outliers.  In fact, this justifies the removal of all outliers which are outliers in multiple categories.</p>
 <p><em>Explanation:</em> PCA maximizes the squared variance of the data projected onto a low dimensional subspace. Our estimate of variance is very sensitive to outliers because the calculation of variance entails squaring the magnitudes of each data point.  Therefore outliers will bias PCA torwards subspaces in the feature directions along which they are outliers.
 Being an outlier in multiple directions simply means that this bias will not be along a single feature direction, but along a linear combination.  This is bias nonetheless.  Therefore, I would remove outliers.</p>
 
@@ -7346,10 +7349,10 @@ hpGIiIiIiAS9/wcfha9kCUNXYAAAAABJRU5ErkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong>  About 73% of the variance in the data is explained by the first two principal components.   About 93.5% of the variance is explained by the first four principal components.  I obtained these numbers by simply adding the explained variance for each component individually.</p>
 <ol>
-<li>The first principal component appears to find that demographic of people who buy <code>Detergent</code>, <code>Milk</code>, and <code>Groceries</code>, three items which corrollate with each other.</li>
-<li>The second principal component is orthogonal to the first component (by definition) and represents customers who place equal weight on all the items not emphasized by the first component (i.e. <code>Fresh</code>, <code>Frozen</code>, and <code>Delicatessen</code>)</li>
-<li>The third principal represents customers who buy very little <code>Fresh</code> produce, and instead favor the <code>Frozen</code> and <code>Delicatessen</code> section of the store.</li>
-<li>The fourth principal component  consists of individuals who by very little <code>Delicatessen</code> products, but favors <code>Frozen</code> products or <code>Detergent</code> products.  I have never met one of these people.</li>
+<li>The first principal component appears to capture the correllation between <code>Detergent</code>, <code>Milk</code>, and <code>Groceries</code>.</li>
+<li>The second principal component is orthogonal to the first component (by definition) and places equal weight on all the items not emphasized by the first component (i.e. <code>Fresh</code>, <code>Frozen</code>, and <code>Delicatessen</code>)</li>
+<li>The third principal de-emphasized <code>Fresh</code> produce and favor <code>Frozen</code> and <code>Delicatessen</code> section of the store.  We can interpret the third component as allowing us to tease apart a "combined variable" given by the second principal component into (roughly) two parts: one for <code>Fresh</code> and one for <code>Frozen/Delicatessen</code>.</li>
+<li>The fourth principal component  consists of individuals who by very little <code>Delicatessen</code> products, but favors <code>Frozen</code> products or <code>Detergent</code> products.  Including the fourth component is equivalent to having not transformed the data at all (it's just an orthogonal transiformation, which buys us nothing in terms of analysis)</li>
 </ol>
 
 </div>
@@ -7568,8 +7571,8 @@ hpGIiIiIiAS9/wcfha9kCUNXYAAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong>  The K-Means clustering algorithm is scalable (i.e. parallelizable and can handle larger data sets), and is ideally suited for detecting small numbers of clusters.  In fact, the K-means clustering algorithm can be seen as a special case of a Guassian mixture model, where the covariance matrices for each cluster are restricted to be indentity matrices.</p>
-<p>In constrast, the Gaussian mixture model allows for arbitrary covariance matrices.  This is particularly advantageous when one cluster is very stretched along some axis compared to another cluster.  A disadvantage of this algorithm is that it is not scalable.</p>
-<p>As mentioned earlier, the first principal component teases out the correllation between the freatures <code>Grocery</code> <code>Milk</code> and <code>Detergents_Paper</code>, and sort of collapses these into one combined feature.  When we look at the scatter plots above, most of the plots appear to be point clouds without skew, except for the boxes between the three features represented by the first principal component.  This suggests that the data will be roughly equal variance in all directions after projection onto the first few principal components.  We appear to be in a situation where a general Gaussian Mixture Model provides little advantage over a K-means clustering algorithm.  Therefore I would choose to do a standard K-means clustering algorithm.  Moreover, as K-means is scalable, we have the flexibility of handling larger datasets in the future.</p>
+<p>In constrast, the Gaussian mixture model (GMM) allows for arbitrary covariance matrices.  This is particularly advantageous when one cluster is very stretched along some axis compared to another cluster.  Moreover, GMM allows one to consider a soft-classification algorithm.  This can be useful when the user desires a measure of confidence from the algorithm alongside a classification. One disadvantage of the GMM algorithm is that it is not scalable.</p>
+<p>As mentioned earlier, the first principal component teases out the correllation between the freatures <code>Grocery</code> <code>Milk</code> and <code>Detergents_Paper</code>, and sort of collapses these into one combined feature.  When we look at the scatter plots above, most of the plots appear to be point clouds without skew, except for the boxes between the three features represented by the first principal component.  This suggests that the data will be roughly equal variance in all directions after projection onto the first few principal components.  We appear to be in a situation where a general Gaussian Mixture Model provides little advantage over a K-means clustering algorithm.  Therefore I would choose to do a standard K-means clustering algorithm.  Moreover, as K-means is scalable, we have the flexibility of handling larger datasets in the future, if the client demands this of us.</p>
 
 </div>
 </div>
@@ -8694,7 +8697,7 @@ Sample point 2 predicted to be in Cluster 0
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer:</strong>  For example, if we were to use a linear regression model to predict the new feature, this linear regression could be performed over the lower dimensional feature space which we produced using PCA.  We can also use the fact there appear to be two clusters.  Perhaps we may consider using to regressors for prediction, one for each cluster.</p>
+<p><strong>Answer:</strong>  If we use a linear regressor to predict the new feature we could fit the regressor over the lower dimensional feature space produced by PCA.  Morever, we can also use the fact there appear to be two roughly Guassian clusters.  The cluster itself may be considered another feature which we use in prediction.  As the cluster is a categorical variable, this might yield two separate regressors, one for each cluster.</p>
 
 </div>
 </div>
